@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "EncodingConverter": {
+      "commandName": "Project",
+      "commandLineArgs": "\r\n--targetlist=\"C:\\work\\202311_GygesMenuSim\\Git\\WTGyges\\appli\\menu\\user\\Tool\\EncodingConverter\\bin\\ConvertTargetFileList.csv\" \r\n--encoding=utf-8\r\n--bom=false\r\n--newline=CR+LF \r\n--quiet"
+    }
+  }
+}

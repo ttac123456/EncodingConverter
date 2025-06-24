@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <BaseOutputPath></BaseOutputPath>
+    <ApplicationIcon>Properties\Resources\EncodingConverter.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Properties\Resources\EncodingConverter.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ude.NetStandard" Version="1.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="EncodingConverterConfig.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EncodingConverterConfig.xml</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Resource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="EncodingConverterConfig.xml">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>EncodingConverterConfig.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /Y &quot;$(TargetDir)$(TargetName).exe&quot; &quot;$(ProjectDir)..\bin\&quot;&#xD;&#xA;xcopy /Y &quot;$(TargetDir)$(TargetName).dll&quot; &quot;$(ProjectDir)..\bin\&quot;&#xD;&#xA;xcopy /Y &quot;$(TargetDir)$(TargetName).dll.config&quot; &quot;$(ProjectDir)..\bin\&quot;&#xD;&#xA;xcopy /Y &quot;$(TargetDir)$(TargetName).deps.json&quot; &quot;$(ProjectDir)..\bin\&quot;&#xD;&#xA;xcopy /Y &quot;$(TargetDir)$(TargetName).pdb&quot; &quot;$(ProjectDir)..\bin\&quot;&#xD;&#xA;xcopy /Y &quot;$(TargetDir)$(TargetName).runtimeconfig.json&quot; &quot;$(ProjectDir)..\bin\&quot;&#xD;&#xA;xcopy /Y &quot;$(TargetDir)Ude.NetStandard.dll&quot; &quot;$(ProjectDir)..\bin\&quot;&#xD;&#xA;xcopy /Y &quot;$(ProjectDir)EncodingConverterConfig.xml&quot; &quot;$(TargetDir)&quot;&#xD;&#xA;xcopy /Y &quot;$(TargetDir)EncodingConverterConfig.xml&quot; &quot;$(ProjectDir)..\bin\&quot;&#xD;&#xA;" />
+  </Target>
+
+</Project>
