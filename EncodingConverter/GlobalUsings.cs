@@ -6,6 +6,7 @@ global using System.Diagnostics;
 global using System.Runtime.InteropServices;
 global using System.Collections.Concurrent;
 global using System.ComponentModel;
+global using System.Security.Cryptography.X509Certificates;
 global using System.Text;
 global using System.Xml.Linq;
 global using Ude;

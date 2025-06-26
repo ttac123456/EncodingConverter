@@ -5,7 +5,9 @@ set ENCODING=%1
 rem 各種パス情報を取得
 set CONVERTER_PATH=..\..\Tool\EncodingConverter\bin
 set CONVERTER_EXE=%CONVERTER_PATH%\EncodingConverter.exe
+set CONVERTER_CONFIG=%CONVERTER_PATH%\EncodingConverterConfig.xml
 set TARGET_FILE_PATH=%CONVERTER_PATH%\ConvertTargetFileList.csv
+set SKEPPED_FILE_PATH=%CONVERTER_PATH%\ConvertTargetFileList.errors.csv
 
 rem EncodingConverter用の各種パラメータを設定
 set OPT_NOGUI=--nogui
@@ -42,7 +44,6 @@ set CONVERT_UTF8=%CONVERTER_EXE% %CONVERTER_PARAM_UTF8%
 
 rem echo %ENCODING%への文字コード変換 (※バッチファイル起動引数でENCODINGを指定)(※ログ表示用コンソール画面を起動)
 set CONVERT_NOT_QUIET=%CONVERTER_EXE% %CONVERTER_PARAM_NOT_QUIET%
-
 @echo on
 
 
@@ -56,6 +57,19 @@ rem set ERRORLEVEL=1
 rem 文字コード変換結果メッセージ表示
 if %ERRORLEVEL%==0 (
     echo %ENCODING%への文字コード変換が正常終了しました。
+) else if %ERRORLEVEL%==1 (
+    echo %ENCODING%への文字コード変換は成功しましたが、スキップされたファイルがあります。
+    echo 文字コード変換スキップされたファイルは %SKEPPED_FILE_PATH% を確認してください。
+) else if %ERRORLEVEL%==2 (
+    echo %ENCODING%への文字コード変換用の設定ファイル読み込みに失敗しました。
+    echo 文字コード変換設定ファイル %CONVERTER_CONFIG% の指定誤りがないかを確認してください。
+) else if %ERRORLEVEL%==3 (
+    echo %ENCODING%への文字コード変換用のコマンドライン引数解析に失敗しました。
+) else if %ERRORLEVEL%==4 (
+    echo %ENCODING%への文字コード変換用の変換対象ファイルリストが見つかりませんでした。
+    echo 文字コード変換対象ファイルリスト保存ファイル %TARGET_FILE_PATH% の指定誤りがないかを確認してください。
+) else if %ERRORLEVEL%==5 (
+    echo %ENCODING%への文字コード変換に失敗しました。
 ) else (
     echo %ENCODING%への文字コード変換が異常終了しました。
     echo 文字コード変換対象ファイルリスト保存ファイル %TARGET_FILE_PATH% の指定誤りがないかを確認してください。

@@ -84,7 +84,7 @@
             targetFilePathTable = new DataTable();
             InitializeTargetFilePathTableColumns();
 
-            targetFileManager = new TargetFileManager(targetFilePathTable);
+            targetFileManager = new TargetFileManager(logger, targetFilePathTable);
         }
 
         private void SeekAndSetAppBasePath()

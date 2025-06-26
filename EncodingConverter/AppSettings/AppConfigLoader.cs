@@ -42,6 +42,7 @@
         {
             if (!System.IO.File.Exists(filePath))
             {
+                ErrorManager.SetError(ErrorCode.AppConfigFileFotFound);
                 Console.Error.WriteLine($"設定ファイルが見つかりません: {filePath}");
                 throw new FileNotFoundException("設定ファイルが見つかりません。", filePath);
             }

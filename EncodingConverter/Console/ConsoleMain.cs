@@ -105,8 +105,8 @@
             table.Columns.Add("FilePath", typeof(string));
             table.Columns.Add("Status", typeof(string));
 
-            targetFileManager = new TargetFileManager(table);
             logger = new ConsoleLogger(appBasePath, AppConfig.Instance.IsOutputLogFile) { Level = startupArgs.LogLevel };
+            targetFileManager = new TargetFileManager(logger, table);
             converter = new EncodingConverter(logger, prjBasePath);
         }
 

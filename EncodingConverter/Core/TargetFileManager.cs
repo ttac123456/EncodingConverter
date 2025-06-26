@@ -6,6 +6,8 @@
     /// </summary>
     public class TargetFileManager
     {
+        private readonly IEncodingLogger logger;
+
         /// <summary>
         /// 管理対象のファイル一覧テーブル。
         /// 列構成：No, FilePath, Status
@@ -16,8 +18,9 @@
         /// 指定された DataTable を使って TargetFileManager を構築する。
         /// </summary>
         /// <param name="table">ファイル一覧用の DataTable</param>
-        public TargetFileManager(DataTable table)
+        public TargetFileManager(IEncodingLogger logger, DataTable table)
         {
+            this.logger = logger;
             _table = table ?? throw new ArgumentNullException(nameof(table));
         }
 
@@ -132,7 +135,13 @@
         /// <param name="filePath">CSV形式のファイル一覧パス</param>
         public void LoadTargetFileList(string prjBasePath, string targetFileListPath)
         {
-            if (!File.Exists(targetFileListPath)) return;
+            if (!File.Exists(targetFileListPath))
+            {
+                // 変換対象ファイルリストが見つからない
+                ErrorManager.SetError(ErrorCode.ConvertTargetFileListFileFotFound);
+                logger ?.LogError($"変換対象ファイルリストが見つかりません: {targetFileListPath}");
+                throw new FileNotFoundException("変換対象ファイルリストが見つかりません。", targetFileListPath);
+            }
 
             int rowNum = 1;
             _table.Clear();

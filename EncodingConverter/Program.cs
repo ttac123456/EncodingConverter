@@ -12,8 +12,13 @@ namespace EncodingConverter
     {
         enum ExitCode
         {
-            Success = 0, // 正常終了
-            Failure = 1  // 異常終了
+            Success = 0,                    // 正常終了
+            SuccessWithSkipedFiles = 1,     // 変換に成功したがスキップされたファイルがある
+            FailureAppConfigLoad = 2,       // 設定ファイルの読み込みに失敗
+            FailureStartupArgsParse = 3,    // コマンドライン引数の解析に失敗
+            FailureTargetFileNotFound = 4,  // 変換対象ファイルリストが見つからない
+            FailureConversion = 5,          // 文字コード変換に失敗
+            Failure = 6,                    // その他の異常終了
         }
 
         /// <summary>
@@ -29,11 +34,17 @@ namespace EncodingConverter
             Debugger.Launch(); // デバッグ用：アプリケーション起動時にデバッガをアタッチする
 #endif
 
+            // エラー状態をクリア
+            ErrorManager.ClearError();
+
             // マルチバイト文字系のエンコーディング（Shift_JISなど）を有効化
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
             // 設定ファイルを読み込み
             var resultLoadAppConfig = LoadAppConfig(Path.Combine(GetAppBasePath(), Constant.ConfigFileName));
+            if (ErrorCode.AppConfigLoadingFailed == ErrorManager.GetLastError())
+                // 設定ファイルの読み込みに失敗
+                return (int)ExitCode.FailureAppConfigLoad;
 
             // コマンドライン引数を解析
             LoadStartupArgs(args);
@@ -52,13 +63,33 @@ namespace EncodingConverter
                     {
                         // 変換処理が成功した場合は完了メッセージを表示
                         //Console.WriteLine("文字コード変換が完了しました。");
-                        return (int)ExitCode.Success; // 正常終了
+                        //return (int)ExitCode.Success; // 正常終了
+                        if (ErrorManager.HasConversionSkipedFiles())
+                            // 変換に成功したがスキップされたファイルがある
+                            return (int)ExitCode.SuccessWithSkipedFiles;
+                        else
+                            // 正常終了
+                            return (int)ExitCode.Success;
+
                     }
                     else
                     {
                         // 変換処理が失敗した場合はエラーメッセージを表示
                         //Console.WriteLine("文字コード変換に失敗しました。詳細はログを確認してください。");
-                        return (int)ExitCode.Failure; // 異常終了
+                        //return (int)ExitCode.Failure; // 異常終了
+                        // 変換後の処理（必要に応じて追加）
+                        if (ErrorManager.HasError())
+                        {
+                            switch (ErrorManager.GetLastError())
+                            {
+                                case ErrorCode.ConvertTargetFileListFileFotFound:   // 変換対象ファイルリストが見つからない
+                                    return (int)ExitCode.FailureTargetFileNotFound;
+                                case ErrorCode.EncodingConversionFailed:            // 文字コード変換に失敗
+                                    return (int)ExitCode.FailureConversion;
+                                default:                                            // その他の異常終了
+                                    return (int)ExitCode.Failure;
+                            }
+                        }
                     }
                 }
             }
@@ -75,7 +106,7 @@ namespace EncodingConverter
             string appBasePath = string.Empty;
 #if DEBUGGER_ATTACH
             // デバッグ用：アプリケーション起動時にデバッガがアタッチされた場合
-            appBasePathTmp = Path.GetFullPath(Application.StartupPath);
+            appBasePath = Path.GetFullPath(Application.StartupPath);
 #else    // DEBUGGER_ATTACH
             // アプリケーションの起動パスを取得
             // デバッグ実行時はプロジェクトルート直下のbinフォルダを指すように調整
@@ -122,6 +153,7 @@ namespace EncodingConverter
             }
             catch (Exception ex)
             {
+                ErrorManager.SetError(ErrorCode.AppConfigLoadingFailed);
                 Console.Error.WriteLine($"設定ファイルの読み込みに失敗しました: {ex.Message}");
                 return ExitCode.Failure;
             }
@@ -151,12 +183,18 @@ namespace EncodingConverter
                 {
                     // Console で文字コード変換を実行
                     runner.Run();
-                    result = true;
                 }
                 catch
                 {
                     // 例外は握りつぶす（必要に応じてログ出力等を追加）
-                    result = false;
+                }
+                finally
+                {
+                    // 変換後の処理（必要に応じて追加）
+                    if (!ErrorManager.HasError())
+                    {
+                        result = true;
+                    }
                 }
             }
 

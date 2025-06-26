@@ -28,14 +28,20 @@
         public void Convert(EncodingConversionJob job)
         {
             if (job == null)
+            {
+                ErrorManager.AppendConversionSkipedFile("no job");
                 throw new ArgumentNullException(nameof(job));
+            }
 
             // 相対パスを絶対パスに変換
             string inputFullPath = Path.Combine(prjBasePath, job.InputPath);
             string outputFullPath = Path.Combine(prjBasePath, job.OutputPath);
 
             if (!File.Exists(inputFullPath))
+            {
+                ErrorManager.AppendConversionSkipedFile(job.InputPath);
                 throw new FileNotFoundException("入力ファイルが見つかりません", job.InputPath);
+            }
 
             // エンコーディングが未指定なら自動判定
             if (job.SourceEncoding == null)

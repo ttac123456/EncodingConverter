@@ -99,6 +99,13 @@
             bool dryRun = dict.GetValueOrDefault("dry-run") == "true";
             LogLevel logLevel = Enum.TryParse(dict.GetValueOrDefault("log"), true, out LogLevel level) ? level : LogLevel.Info;
 
+            //// --nogui が指定されている場合は、必須パラメータの有無をチェックする
+            //if (isNogui)
+            //{
+            //    // Note: 必ずデフォルト値を設定しているため、このエラーチェックは省略可能
+            //    Error.SetError(ErrorCode.StartupArgParsingFailed);
+            //}
+
             return new StartupArgs
             {
                 IsNoGui = isNogui,

@@ -1,6 +1,4 @@
-﻿using System.Drawing.Interop;
-
-namespace EncodingConverter.Core
+﻿namespace EncodingConverter.Core
 {
     /// <summary>
     /// GUI上でログを出力するためのロガー。
