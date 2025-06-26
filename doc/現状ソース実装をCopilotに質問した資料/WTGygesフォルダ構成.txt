@@ -1,0 +1,191 @@
+フォルダー パスの一覧:  ボリューム TIH0771000A
+ボリューム シリアル番号は 8CD0-4F97 です
+C:.
+|   .gitignore
+|   EncodingConverter - ショートカット.lnk
+|   EncodingConverter.sln
+|   tree.txt
+|   
++---bin
+|   |   ConvertTargetFileList.csv
+|   |   ConvertTargetFileList.csv__err
+|   |   ConvertTargetFileList.errors.csv
+|   |   ConvertTargetFileList_ori.csv
+|   |   EncodingConverter.deps.json
+|   |   EncodingConverter.dll
+|   |   EncodingConverter.dll.config
+|   |   EncodingConverter.exe
+|   |   EncodingConverter.pdb
+|   |   EncodingConverter.runtimeconfig.json
+|   |   EncodingConverterConfig.xml
+|   |   Ude.NetStandard.dll
+|   |   
+|   \---Log
+|           App_20250626-112941.log
+|           App_20250626-113016.log
+|           App_20250626-113108.log
+|           App_20250626-113256.log
+|           App_20250626-113951.log
+|           App_20250626-133708.log
+|           App_20250626-134058.log
+|           App_20250626-150735.log
+|           App_20250626-152928.log
+|           App_20250626-155854.log
+|           Conv_20250626-112104.log
+|           Conv_20250626-112234.log
+|           Conv_20250626-112849.log
+|           Conv_20250626-112941.log
+|           Conv_20250626-113016.log
+|           Conv_20250626-113108.log
+|           Conv_20250626-113256.log
+|           Conv_20250626-133708.log
+|           Conv_20250626-134058.log
+|           Conv_20250626-155923.log
+|           
++---doc
+|   +---アプリアイコン作成時に使用した資料
+|   |       EC.xlsx
+|   |       EncodingConverter.ico
+|   |       
+|   +---検討中のAutoBuildバッチファイル
+|   |       AutoBuild.bat
+|   |       AutoBuild_20250614a.bat
+|   |       AutoBuild_20250616a.bat
+|   |       AutoBuild_20250616b.bat
+|   |       AutoBuild_20250616c.bat
+|   |       AutoBuild_20250616d.bat
+|   |       AutoBuild_20250616e.bat
+|   |       AutoBuild_20250617a.bat
+|   |       AutoBuild_20250618a.bat
+|   |       AutoBuild_20250619a.bat
+|   |       AutoBuild_20250619b.bat
+|   |       AutoBuild_20250620a.bat
+|   |       AutoBuild_ori.bat
+|   |       ConvertEncoding.bat
+|   |       ConvertEncoding_20250617a.bat
+|   |       ConvertEncoding_20250618a.bat
+|   |       ConvertEncoding_20250619a.bat
+|   |       ConvertEncoding_20250620a.bat
+|   |       ConvertEncoding_20250626a.bat
+|   |       
+|   \---現状ソース実装をCopilotに質問した資料
+|           EncodingConverterの現状のソース実装とGUIキャプチャ_20250615a.xlsx
+|           EncodingConverterの現状のソース実装とGUIキャプチャ_20250615b.xlsx
+|           EncodingConverterの現状のソース実装とGUIキャプチャ_20250626a.xlsx
+|           
+\---EncodingConverter
+    |   App.config
+    |   EncodingConverter.csproj
+    |   EncodingConverter.csproj.user
+    |   EncodingConverter.ico
+    |   EncodingConverterConfig.Designer.cs
+    |   EncodingConverterConfig.xml
+    |   GlobalUsings.cs
+    |   Program.cs
+    |   
+    +---AppSettings
+    |       AppConfigLoader.cs
+    |       Constant.cs
+    |       ErrorManager.cs
+    |       StartupArgsAnalyzer.cs
+    |       
+    +---bin
+    |   \---Debug
+    |       \---net8.0-windows
+    |           |   EncodingConverter.deps.json
+    |           |   EncodingConverter.dll
+    |           |   EncodingConverter.dll.config
+    |           |   EncodingConverter.exe
+    |           |   EncodingConverter.pdb
+    |           |   EncodingConverter.runtimeconfig.json
+    |           |   EncodingConverterConfig.xml
+    |           |   Ude.NetStandard.dll
+    |           |   
+    |           \---Log
+    |                   App_20250626-091545.log
+    |                   
+    +---Console
+    |       ConsoleMain.cs
+    |       
+    +---Core
+    |       EncodingConversionJob.cs
+    |       EncodingConverter.cs
+    |       EncodingDetector.cs
+    |       TargetFileManager.cs
+    |       
+    +---Form
+    |       FormBase.cs
+    |       FormBase.resx
+    |       FormLog.cs
+    |       FormLog.Designer.cs
+    |       FormLog.resx
+    |       FormMain.cs
+    |       FormMain.Designer.cs
+    |       FormMain.resx
+    |       
+    +---Log
+    |       BaseLogger.cs
+    |       ConsoleLogger.cs
+    |       DebugTextWriter.cs
+    |       GuiLogger.cs
+    |       LogFileWriter.cs
+    |       
+    +---obj
+    |   |   EncodingConverter.csproj.nuget.dgspec.json
+    |   |   EncodingConverter.csproj.nuget.g.props
+    |   |   EncodingConverter.csproj.nuget.g.targets
+    |   |   project.assets.json
+    |   |   project.nuget.cache
+    |   |   
+    |   \---Debug
+    |       \---net8.0-windows
+    |           |   .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+    |           |   apphost.exe
+    |           |   Encoding.A1E9489E.Up2Date
+    |           |   EncodingConverter.AssemblyInfo.cs
+    |           |   EncodingConverter.AssemblyInfoInputs.cache
+    |           |   EncodingConverter.assets.cache
+    |           |   EncodingConverter.csproj.AssemblyReference.cache
+    |           |   EncodingConverter.csproj.BuildWithSkipAnalyzers
+    |           |   EncodingConverter.csproj.CoreCompileInputs.cache
+    |           |   EncodingConverter.csproj.FileListAbsolute.txt
+    |           |   EncodingConverter.csproj.GenerateResource.cache
+    |           |   EncodingConverter.designer.deps.json
+    |           |   EncodingConverter.designer.runtimeconfig.json
+    |           |   EncodingConverter.dll
+    |           |   EncodingConverter.FormBase.resources
+    |           |   EncodingConverter.FormLog.resources
+    |           |   EncodingConverter.FormMain.resources
+    |           |   EncodingConverter.GeneratedMSBuildEditorConfig.editorconfig
+    |           |   EncodingConverter.genruntimeconfig.cache
+    |           |   EncodingConverter.GlobalUsings.g.cs
+    |           |   EncodingConverter.pdb
+    |           |   EncodingConverter.Properties.Resource.resources
+    |           |   EncodingConverter.sourcelink.json
+    |           |   
+    |           +---ref
+    |           |       EncodingConverter.dll
+    |           |       
+    |           +---refint
+    |           |       EncodingConverter.dll
+    |           |       
+    |           \---TempPE
+    |                   Properties.Resource.Designer.cs.dll
+    |                   
+    +---Properties
+    |   |   launchSettings.json
+    |   |   Resource.Designer.cs
+    |   |   Resource.resx
+    |   |   Settings.Designer.cs
+    |   |   Settings.settings
+    |   |   
+    |   \---Resources
+    |           EncodingConverter.ico
+    |           EncodingConverter.xcf
+    |           
+    +---Resources
+    |       EncodingConverter.ico
+    |       
+    \---Shared
+            IEncodingLogger.cs
+            

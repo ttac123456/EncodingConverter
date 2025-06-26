@@ -1,0 +1,86 @@
+
+●文字コード変換アプリの実装ファイル一覧
+EncodingConverter
+|   EncodingConverter.sln
+|   
+\---EncodingConverter
+    |   App.config
+    |   EncodingConverter.csproj
+    |   EncodingConverter.csproj.user
+    |   EncodingConverter.ico
+    |   EncodingConverterConfig.Designer.cs
+    |   EncodingConverterConfig.xml
+    |   GlobalUsings.cs
+    |   Program.cs
+    |   
+    +---AppSettings
+    |       AppConfigLoader.cs
+    |       Constant.cs
+    |       ErrorManager.cs
+    |       StartupArgsAnalyzer.cs
+    |       
+    +---Console
+    |       ConsoleMain.cs
+    |       
+    +---Core
+    |       EncodingConversionJob.cs
+    |       EncodingConverter.cs
+    |       EncodingDetector.cs
+    |       TargetFileManager.cs
+    |       
+    +---Form
+    |       FormBase.cs
+    |       FormBase.resx
+    |       FormLog.cs
+    |       FormLog.Designer.cs
+    |       FormLog.resx
+    |       FormMain.cs
+    |       FormMain.Designer.cs
+    |       FormMain.resx
+    |       
+    +---Log
+    |       BaseLogger.cs
+    |       ConsoleLogger.cs
+    |       DebugTextWriter.cs
+    |       GuiLogger.cs
+    |       LogFileWriter.cs
+    |       
+    +---Properties
+    |   |   launchSettings.json
+    |   |   Resource.Designer.cs
+    |   |   Resource.resx
+    |   |   Settings.Designer.cs
+    |   |   Settings.settings
+    |   |   
+    |   \---Resources
+    |           EncodingConverter.ico
+    |           EncodingConverter.xcf
+    |           
+    +---Resources
+    |       EncodingConverter.ico
+    |       
+    \---Shared
+            IEncodingLogger.cs
+            
+
+●文字コード変換アプリの実行ファイル＆出力ログファイルの一覧
+EncodingConverter
+|   
++---bin
+    |   ConvertTargetFileList.csv
+    |   ConvertTargetFileList.csv__err
+    |   ConvertTargetFileList.errors.csv
+    |   ConvertTargetFileList_ori.csv
+    |   EncodingConverter.deps.json
+    |   EncodingConverter.dll
+    |   EncodingConverter.dll.config
+    |   EncodingConverter.exe
+    |   EncodingConverter.pdb
+    |   EncodingConverter.runtimeconfig.json
+    |   EncodingConverterConfig.xml
+    |   Ude.NetStandard.dll
+    |   
+    \---Log
+            App_20250626-155854.log
+            Conv_20250626-155923.log
+            
